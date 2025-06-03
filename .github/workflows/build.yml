@@ -63,7 +63,7 @@ jobs:
     - name: Verify MGCB tool (Windows)
       run: |
         $env:PATH = "$env:USERPROFILE\.dotnet\tools;$env:PATH"
-        mgcb --help
+        mgcb /?
       if: env.SCRIPT_OS_NAME == 'Windows'
       shell: pwsh
       
@@ -71,7 +71,15 @@ jobs:
       run: dotnet restore
         
     - name: Build x86_64 binary
+      run: |
+        $env:PATH = "$env:USERPROFILE\.dotnet\tools;$env:PATH"
+        dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID }} /p:DebugType=None /p:DebugSymbols=false --self-contained
+      if: env.SCRIPT_OS_NAME == 'Windows'
+      shell: pwsh
+      
+    - name: Build x86_64 binary (Non-Windows)
       run: dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID }} /p:DebugType=None /p:DebugSymbols=false --self-contained
+      if: env.SCRIPT_OS_NAME != 'Windows'
 
     - name: Build arm64 binary (macOS only)
       run: dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER_ARM }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID_ARM }} /p:DebugType=None /p:DebugSymbols=false --self-contained
