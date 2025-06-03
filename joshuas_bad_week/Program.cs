@@ -18,7 +18,9 @@ catch (Exception ex)
     string errorMessage = $"Error at {DateTime.Now}: {ex.Message}\n{ex.StackTrace}\n";
     File.WriteAllText("error.log", errorMessage);
     
-    // Also try to show a message box on Windows
+    // Show error message - platform specific
+#if WINDOWS
+    // Try to show a message box on Windows
     try
     {
         System.Windows.Forms.MessageBox.Show($"Game failed to start:\n{ex.Message}", "Error", 
@@ -26,7 +28,10 @@ catch (Exception ex)
     }
     catch
     {
-        // If MessageBox fails, just write to console
         Console.WriteLine($"Error: {ex.Message}");
     }
+#else
+    // On Linux/macOS, just write to console
+    Console.WriteLine($"Error: {ex.Message}");
+#endif
 }
