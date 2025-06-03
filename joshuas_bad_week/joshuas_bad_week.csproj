@@ -6,6 +6,7 @@
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
     <MonoGameMGCBAdditionalArguments>--quiet</MonoGameMGCBAdditionalArguments>
+    <MGCBCommand Condition="'$(OS)' == 'Windows_NT'">mgcb</MGCBCommand>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>

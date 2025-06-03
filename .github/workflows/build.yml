@@ -60,6 +60,13 @@ jobs:
       run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
       if: env.SCRIPT_OS_NAME != 'Windows'
       
+    - name: Verify MGCB tool (Windows)
+      run: |
+        $env:PATH = "$env:USERPROFILE\.dotnet\tools;$env:PATH"
+        mgcb --help
+      if: env.SCRIPT_OS_NAME == 'Windows'
+      shell: pwsh
+      
     - name: Restore .NET dependencies
       run: dotnet restore
         
