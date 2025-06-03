@@ -17,7 +17,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <AssemblyName>joshuas_bad_week</AssemblyName>
     <RootNamespace>joshuas_bad_week</RootNamespace>
-    <StartupObject>joshuas_bad_week.Program</StartupObject>
     <Version>1.0.0.0</Version>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
   </PropertyGroup>
