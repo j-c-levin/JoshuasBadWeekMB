@@ -5,6 +5,7 @@
     <RollForward>Major</RollForward>
     <PublishReadyToRun>false</PublishReadyToRun>
     <TieredCompilation>false</TieredCompilation>
+    <MonoGameMGCBAdditionalArguments>--quiet</MonoGameMGCBAdditionalArguments>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -26,4 +27,8 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
   </ItemGroup>
+  
+  <Target Name="RestoreDotnetTools" BeforeTargets="MonoGameBuildContent">
+    <Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildProjectDirectory)/.." />
+  </Target>
 </Project>

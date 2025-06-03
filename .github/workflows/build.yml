@@ -47,6 +47,15 @@ jobs:
     - name: Restore .NET tools
       run: dotnet tool restore
       
+    - name: Add dotnet tools to PATH (Windows)
+      run: echo "$env:USERPROFILE\.dotnet\tools" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      if: env.SCRIPT_OS_NAME == 'Windows'
+      shell: pwsh
+      
+    - name: Add dotnet tools to PATH (Unix)
+      run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+      if: env.SCRIPT_OS_NAME != 'Windows'
+      
     - name: Restore .NET dependencies
       run: dotnet restore
         
