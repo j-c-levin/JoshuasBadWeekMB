@@ -48,7 +48,7 @@ jobs:
       run: dotnet tool restore
       
     - name: Install MGCB tool globally (Windows)
-      run: dotnet tool install --global dotnet-mgcb --version 3.8.4
+      run: dotnet tool install --global dotnet-mgcb
       if: env.SCRIPT_OS_NAME == 'Windows'
       
     - name: Add dotnet tools to PATH (Windows)
