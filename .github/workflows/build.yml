@@ -47,7 +47,7 @@ jobs:
       run: dotnet restore
       
     - name: Install Linux dependencies for PublishAot
-      run: sudo apt-get update && sudo apt-get install zlib1g-dev
+      run: sudo apt-get update && sudo apt-get install zlib1g-dev fonts-liberation
       if: env.SCRIPT_OS_NAME == 'Linux'
         
     - name: Build x86_64 binary
