@@ -54,6 +54,10 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(DefineConstants.Contains('WINDOWS'))">
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
   <!-- Launch.sh script-->
 
   <ItemGroup Condition="$(DefineConstants.Contains('OSX'))">
