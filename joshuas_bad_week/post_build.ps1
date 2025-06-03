@@ -20,25 +20,25 @@ if (!(Test-Path $directory"MonoGame.Framework.dll")) {
 if ($identifier -eq "osx-x64" -Or $identifier -eq "osx-arm64") {
     Write-Host "Creating macOS app bundle..." -ForegroundColor DarkCyan
 
-    Remove-Item "$($directory)PlaceholderGame.app/" -Recurse -ErrorAction SilentlyContinue
+    Remove-Item "$($directory)joshuas_bad_week.app/" -Recurse -ErrorAction SilentlyContinue
 
-    if (!(Test-Path "$($directory)PlaceholderGame.app/Contents/MacOS/")) {
-        New-Item "$($directory)PlaceholderGame.app/Contents/MacOS/" -Type Directory >$null
+    if (!(Test-Path "$($directory)joshuas_bad_week.app/Contents/MacOS/")) {
+        New-Item "$($directory)joshuas_bad_week.app/Contents/MacOS/" -Type Directory >$null
     }
-    Move-Item -Path (Get-Item -Path "$($directory)/*" -Exclude ('PlaceholderGame.app')).FullName -Destination "$($directory)PlaceholderGame.app/Contents/MacOS/" -Force
+    Move-Item -Path (Get-Item -Path "$($directory)/*" -Exclude ('joshuas_bad_week.app')).FullName -Destination "$($directory)joshuas_bad_week.app/Contents/MacOS/" -Force
 
-    Copy-Item -Path "$($projectPath)Info.plist" -Destination "$($directory)PlaceholderGame.app/Contents/Info.plist" -Force
+    Copy-Item -Path "$($projectPath)Info.plist" -Destination "$($directory)joshuas_bad_week.app/Contents/Info.plist" -Force
 
-    if (!(Test-Path "$($directory)PlaceholderGame.app/Contents/Resources/")) {
-        New-Item "$($directory)PlaceholderGame.app/Contents/Resources/" -Type Directory >$null
+    if (!(Test-Path "$($directory)joshuas_bad_week.app/Contents/Resources/")) {
+        New-Item "$($directory)joshuas_bad_week.app/Contents/Resources/" -Type Directory >$null
     }
-    Copy-Item -Path "$($projectPath)PlaceholderGame.icns" -Destination "$($directory)PlaceholderGame.app/Contents/Resources/PlaceholderGame.icns" -Force
+    Copy-Item -Path "$($projectPath)joshuas_bad_week.icns" -Destination "$($directory)joshuas_bad_week.app/Contents/Resources/joshuas_bad_week.icns" -Force
 
-    if ((Test-Path "$($directory)PlaceholderGame.app/Contents/MacOS/Content/")) {
-        Move-Item -Path "$($directory)PlaceholderGame.app/Contents/MacOS/Content" -Destination "$($directory)PlaceholderGame.app/Contents/Resources/Content" -Force
+    if ((Test-Path "$($directory)joshuas_bad_week.app/Contents/MacOS/Content/")) {
+        Move-Item -Path "$($directory)joshuas_bad_week.app/Contents/MacOS/Content" -Destination "$($directory)joshuas_bad_week.app/Contents/Resources/Content" -Force
     }
 
-    $original_file = "$($directory)PlaceholderGame.app/Contents/MacOS/Launch.sh"
+    $original_file = "$($directory)joshuas_bad_week.app/Contents/MacOS/Launch.sh"
     $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
     [IO.File]::WriteAllText($original_file, $text)
 }

@@ -51,24 +51,24 @@ jobs:
       if: env.SCRIPT_OS_NAME == 'Linux'
         
     - name: Build x86_64 binary
-      run: dotnet publish ./PlaceholderGame/PlaceholderGame.csproj -p:PublishDir=../${{ env.BUILD_FOLDER }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID }} /p:DebugType=None /p:DebugSymbols=false --self-contained
+      run: dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID }} /p:DebugType=None /p:DebugSymbols=false --self-contained
 
     - name: Build arm64 binary (macOS only)
-      run: dotnet publish ./PlaceholderGame/PlaceholderGame.csproj -p:PublishDir=../${{ env.BUILD_FOLDER_ARM }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID_ARM }} /p:DebugType=None /p:DebugSymbols=false --self-contained
+      run: dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER_ARM }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID_ARM }} /p:DebugType=None /p:DebugSymbols=false --self-contained
       if: env.SCRIPT_OS_NAME == 'macOS'
 
     - name: Fixing x86_64 macOS weirdness
       shell: pwsh
-      run: Move-Item -Path ${{ env.BUILD_FOLDER }}/PlaceholderGame -Destination ${{ env.BUILD_FOLDER }}/PlaceholderGame.app/Contents/MacOS/PlaceholderGame -Force
+      run: Move-Item -Path ${{ env.BUILD_FOLDER }}/joshuas_bad_week -Destination ${{ env.BUILD_FOLDER }}/joshuas_bad_week.app/Contents/MacOS/joshuas_bad_week -Force
       if: env.SCRIPT_OS_NAME == 'macOS'
 
     - name: Fixing arm64 macOS weirdness
       shell: pwsh
-      run: Move-Item -Path ${{ env.BUILD_FOLDER_ARM }}/PlaceholderGame -Destination ${{ env.BUILD_FOLDER_ARM }}/PlaceholderGame.app/Contents/MacOS/PlaceholderGame -Force
+      run: Move-Item -Path ${{ env.BUILD_FOLDER_ARM }}/joshuas_bad_week -Destination ${{ env.BUILD_FOLDER_ARM }}/joshuas_bad_week.app/Contents/MacOS/joshuas_bad_week -Force
       if: env.SCRIPT_OS_NAME == 'macOS'
 
     - name: Create macOS universal binary
-      run: lipo -create ${{ env.BUILD_FOLDER }}/PlaceholderGame.app/Contents/MacOS/PlaceholderGame ${{ env.BUILD_FOLDER_ARM }}/PlaceholderGame.app/Contents/MacOS/PlaceholderGame -output ./PlaceholderGame.lipo && cp -rf ./PlaceholderGame.lipo ${{ env.BUILD_FOLDER }}/PlaceholderGame.app/Contents/MacOS/PlaceholderGame
+      run: lipo -create ${{ env.BUILD_FOLDER }}/joshuas_bad_week.app/Contents/MacOS/joshuas_bad_week ${{ env.BUILD_FOLDER_ARM }}/joshuas_bad_week.app/Contents/MacOS/joshuas_bad_week -output ./joshuas_bad_week.lipo && cp -rf ./joshuas_bad_week.lipo ${{ env.BUILD_FOLDER }}/joshuas_bad_week.app/Contents/MacOS/joshuas_bad_week
       if: env.SCRIPT_OS_NAME == 'macOS'
 
     - name: Upload build artifact

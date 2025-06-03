@@ -21,4 +21,4 @@ else
 	export LD_LIBRARY_PATH
 fi
 
-./PlaceholderGame $@
+./joshuas_bad_week $@
