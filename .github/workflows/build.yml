@@ -42,6 +42,7 @@ jobs:
         
     - name: Restore .NET tools
       run: dotnet tool restore
+      working-directory: ./joshuas_bad_week
       
     - name: Restore .NET dependencies
       run: dotnet restore
