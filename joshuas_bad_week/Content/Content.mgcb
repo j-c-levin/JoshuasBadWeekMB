@@ -6,21 +6,16 @@
 /platform:DesktopGL
 /config:
 /profile:Reach
-/compress:True
+/compress:False
 
 #-------------------------------- References --------------------------------#
 
 
 #---------------------------------- Content ---------------------------------#
 
-#begin empty.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=False
-/processorParam:GenerateMipmaps=False
+#begin DefaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:empty.png
+/processorParam:TextureFormat=Compressed
+/build:DefaultFont.spritefont
