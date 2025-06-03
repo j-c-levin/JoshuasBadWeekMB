@@ -40,16 +40,15 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
         
+    - name: Install Linux dependencies
+      run: sudo apt-get update && sudo apt-get install zlib1g-dev fonts-liberation
+      if: env.SCRIPT_OS_NAME == 'Linux'
+        
     - name: Restore .NET tools
       run: dotnet tool restore
-      working-directory: ./joshuas_bad_week
       
     - name: Restore .NET dependencies
       run: dotnet restore
-      
-    - name: Install Linux dependencies for PublishAot
-      run: sudo apt-get update && sudo apt-get install zlib1g-dev fonts-liberation
-      if: env.SCRIPT_OS_NAME == 'Linux'
         
     - name: Build x86_64 binary
       run: dotnet publish ./joshuas_bad_week/joshuas_bad_week.csproj -p:PublishDir=../${{ env.BUILD_FOLDER }} -c ${{ matrix.configuration }} -r ${{ env.SCRIPT_OS_RID }} /p:DebugType=None /p:DebugSymbols=false --self-contained
